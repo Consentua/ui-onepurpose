@@ -55,6 +55,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
+            overflow: hidden;
         }
 
         ol#purposes {
@@ -287,19 +288,6 @@
             animation: dothatopcheck 0.4s ease 0s forwards;
         }
 
-        #consentuaLabel {
-            margin-top: 3rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #consentuaLabel img {
-            margin-left: 1rem;
-            max-height: 35px;
-        }
-
         span#drop-down {
             padding-left: 1rem;
             border-radius: 10px;
@@ -328,12 +316,13 @@
             height: 2rem;
             margin: 0rem 0.6rem;
         }
-        @media only screen and (max-width: 550px){
-            .consent-check-contain #toggle-assent-lbl{
+
+        @media only screen and (max-width: 550px) {
+            .consent-check-contain #toggle-assent-lbl {
                 max-width: 100%;
                 text-align: center;
             }
-            #btn{
+            #btn {
                 margin: 1rem auto;
             }
         }
@@ -364,22 +353,15 @@
         </span>
         <ol id="purposes"></ol>
         <hr>
-        <div id="consentuaLabel">
-            Powered by 🚀
-            <a href="https://consentua.com">
-                <img src="https://consentua.com/imgs/logo/include.jpg">
-            </a>
-        </div>
     </main>
     <script>
-        // Yay no Jquery!
         document.body.addEventListener("consentua-ready", function () {
             console.log("Consentua is ready; setting up the simple interaction", window.consentua);
             var pgs = window.consentua.template.PurposeGroups;
             console.log("Purpose groups", pgs);
             document.getElementById('question').innerHTML = window.consentua.template.Question;
             document.getElementById('name').innerHTML = window.consentua.template.Name;
-            for (let i in pgs) {
+            for (let i = 0; i < pgs.length; i++) {
                 let pg = pgs[i];
                 let purposes = "";
                 console.log("PG " + i, pg.Purposes);
@@ -404,18 +386,18 @@
                 console.log("Toggle consent on purpose groups", groupids, event.target.checked);
                 window.consentua.setPgConsent(groupids, event.target.checked);
             });
-            // window.consentua.addEventListener('error', (err) => {
-            //     console.error(err);
-            //     document.getElementById('err').innerHTML=err.msg;         
-            // });
+            /* window.consentua.addEventListener('error', (err) => {
+                 console.error(err);
+                 document.getElementById('err').innerHTML=err.msg;         
+            });*/
             document.getElementById('drop-down').addEventListener('click', (event) => {
                 var p = document.getElementById('purposes'),
                     c = document.getElementById('caret');
                 if (p.classList.contains('anim-down')) {
-                    p.classList.remove('anim-down')
+                    p.classList.remove('anim-down');
                     c.style.transform = "rotate(0deg)";
                 } else {
-                    p.classList.add('anim-down')
+                    p.classList.add('anim-down');
                     c.style.transform = "rotate(90deg)";
                 }
             });

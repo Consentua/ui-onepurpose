@@ -1,3 +1,3 @@
 # ui-onepurpose
 
-![ui-onepurpose](https://i.imgur.com/ps15c9I.gif)
+![ui-onepurpose](https://puu.sh/Ba83t/465341971f.png)

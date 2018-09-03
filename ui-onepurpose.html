@@ -53,6 +53,7 @@
 
         #main {
             font-family: 'Open Sans', sans-serif;
+            color: #212121;
             display: flex;
             padding: 1rem;
             border-radius: 20px;
@@ -162,6 +163,7 @@
         }
 
         #question {
+            font-weight: normal;
             max-width: 90%;
         }
 
@@ -216,7 +218,7 @@
             height: 100px;
             width: 100px;
             background-color: #fff;
-            border: 10px solid #000;
+            border: 10px solid #455A64;
             border-radius: 25px;
             position: relative;
             display: inline-block;
@@ -359,8 +361,20 @@
         <ol id="purposes"></ol>
     </main>
     <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
         document.body.addEventListener("consentua-ready", function () {
             console.log("Consentua is ready; setting up the simple interaction", window.consentua);
+            if (getParameterByName('c') == 'l') {
+                document.getElementById('main').style.color = '#FFF';
+            }
             var pgs = window.consentua.template.PurposeGroups;
             console.log("Purpose groups", pgs);
             document.getElementById('question').innerHTML = window.consentua.template.Question;

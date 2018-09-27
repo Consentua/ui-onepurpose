@@ -2,15 +2,16 @@
 <html lang="en-us">
 
 <head>
-    <title>custom interaction</title>
+    <title>custom ui interaction</title>
     <script src="https://websdk.consentua.com/websdk/consentua-interaction.js"></script>
     <script src="https://websdk.consentua.com/websdk/comms.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet" />
     <style>
-        body{
+        body {
             margin: 0px;
             padding: 0px;
         }
+
         #loading {
             font-family: 'Open Sans', sans-serif;
             width: 80%;
@@ -34,7 +35,6 @@
             height: 100%;
             background-color: rgba(255, 255, 255, 0.4);
             -webkit-animation: loadBar 2s cubic-bezier(.09, .89, .7, .71) infinite;
-            -moz-animation: loadBar 2s cubic-bezier(.09, .89, .7, .71) infinite;
             animation: loadBar 2s cubic-bezier(.09, .89, .7, .71) infinite;
         }
 
@@ -54,11 +54,20 @@
         #main {
             font-family: 'Open Sans', sans-serif;
             color: #212121;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
             padding: 1rem;
             border-radius: 20px;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
             flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
             justify-content: space-between;
             overflow: hidden;
         }
@@ -66,10 +75,18 @@
         ol#purposes {
             max-height: 0;
             list-style: none;
+            -webkit-transition: max-height 0.4s ease-out;
             transition: max-height 0.4s ease-out;
             overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
             flex-direction: column;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
             justify-content: space-between;
             padding: 0rem 0rem 0rem 1rem;
             margin: 0.5rem 0rem;
@@ -77,6 +94,7 @@
 
         ol#purposes.anim-down {
             max-height: 500px;
+            -webkit-transition: max-height 0.4s ease-in;
             transition: max-height 0.4s ease-in;
         }
 
@@ -90,21 +108,23 @@
             border-bottom: 2px solid #9A1144;
         }
 
-        @keyframes loadBar {
+        @-webkit-keyframes loadBar {
             0% {
                 left: -110%;
             }
+
             100% {
                 left: 110%;
             }
         }
 
-        @-moz-keyframes dothabottomcheck {
+        @keyframes loadBar {
             0% {
-                height: 0;
+                left: -110%;
             }
+
             100% {
-                height: 50px;
+                left: 110%;
             }
         }
 
@@ -112,6 +132,7 @@
             0% {
                 height: 0;
             }
+
             100% {
                 height: 50px;
             }
@@ -121,6 +142,7 @@
             0% {
                 height: 0;
             }
+
             100% {
                 height: 50px;
             }
@@ -130,9 +152,11 @@
             0% {
                 height: 0;
             }
+
             50% {
                 height: 0;
             }
+
             100% {
                 height: 120px;
             }
@@ -142,21 +166,11 @@
             0% {
                 height: 0;
             }
-            50% {
-                height: 0;
-            }
-            100% {
-                height: 120px;
-            }
-        }
 
-        @-moz-keyframes dothatopcheck {
-            0% {
-                height: 0;
-            }
             50% {
                 height: 0;
             }
+
             100% {
                 height: 120px;
             }
@@ -168,6 +182,8 @@
         }
 
         #btn {
+            -webkit-box-flex: 16%;
+            -ms-flex: 16%;
             flex: 16%;
             font-family: 'Raleway', 'FontAwesome';
             padding: 0.8rem;
@@ -181,14 +197,19 @@
             border-radius: 5px;
             color: #F6F6F6;
             background: #4CAF50;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
             justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
             font-size: 1.1rem;
             height: 2rem;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
-            -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
@@ -199,21 +220,33 @@
         }
 
         .consent-check-contain {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -ms-flex-wrap: wrap;
             flex-wrap: wrap;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
             justify-content: space-between;
             padding-left: 1rem;
         }
 
         .consent-check-contain #toggle-assent-lbl {
+            -webkit-box-flex: 70%;
+            -ms-flex: 70%;
             flex: 70%;
             cursor: pointer;
             margin: 0px 0px 1rem 0px;
         }
 
         .consent-check-contain .check-box {
+            -webkit-transform: scale(0.3);
             transform: scale(0.3);
+            -webkit-box-flex: initial !important;
+            -ms-flex: initial !important;
             flex: initial !important;
             height: 100px;
             width: 100px;
@@ -222,11 +255,8 @@
             border-radius: 25px;
             position: relative;
             display: inline-block;
-            -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
-            -moz-transition: border-color ease 0.2s;
-            -o-transition: border-color ease 0.2s;
             -webkit-transition: border-color ease 0.2s;
             transition: border-color ease 0.2s;
             cursor: pointer;
@@ -235,7 +265,6 @@
 
         .check-box::before,
         .check-box::after {
-            -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
             position: absolute;
@@ -243,25 +272,19 @@
             width: 20px;
             background-color: #4CAF50;
             display: inline-block;
-            -moz-transform-origin: left top;
-            -ms-transform-origin: left top;
-            -o-transform-origin: left top;
             -webkit-transform-origin: left top;
             transform-origin: left top;
             border-radius: 5px;
             content: ' ';
             -webkit-transition: opacity ease .5;
-            -moz-transition: opacity ease .5;
             transition: opacity ease .5;
         }
 
         .check-box::before {
             top: 72px;
             left: 41px;
+            -webkit-box-shadow: 0 0 0 8px #fff;
             box-shadow: 0 0 0 8px #fff;
-            -moz-transform: rotate(-135deg);
-            -ms-transform: rotate(-135deg);
-            -o-transform: rotate(-135deg);
             -webkit-transform: rotate(-135deg);
             transform: rotate(-135deg);
         }
@@ -269,9 +292,6 @@
         .check-box::after {
             top: 37px;
             left: 5px;
-            -moz-transform: rotate(-45deg);
-            -ms-transform: rotate(-45deg);
-            -o-transform: rotate(-45deg);
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
         }
@@ -282,16 +302,12 @@
 
         .consent-check-contain input[type=checkbox]:checked+#btn>.check-box::after {
             height: 50px;
-            -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
-            -o-animation: dothabottomcheck 0.2s ease 0s forwards;
             -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
             animation: dothabottomcheck 0.2s ease 0s forwards;
         }
 
         .consent-check-contain input[type=checkbox]:checked+#btn>.check-box::before {
             height: 120px;
-            -moz-animation: dothatopcheck 0.4s ease 0s forwards;
-            -o-animation: dothatopcheck 0.4s ease 0s forwards;
             -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
             animation: dothatopcheck 0.4s ease 0s forwards;
         }
@@ -299,13 +315,18 @@
         span#drop-down {
             padding-left: 1rem;
             border-radius: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
             justify-content: flex-start;
             cursor: pointer;
             -webkit-touch-callout: none;
             -webkit-user-select: none;
-            -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
@@ -318,8 +339,6 @@
 
         span#drop-down #caret {
             -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out;
             transition: all 0.2s ease-in-out;
             height: 2rem;
             margin: 0rem 0.6rem;
@@ -330,6 +349,7 @@
                 max-width: 100%;
                 text-align: center;
             }
+
             #btn {
                 margin: 1rem auto;
             }
@@ -391,9 +411,9 @@
                 p.innerHTML = purposes + "<br />";
                 document.getElementById('purposes').appendChild(p);
             }
-            window.consentua.ready();
             document.getElementById('loading').style.display = 'none';
             document.getElementById('main').style.display = 'block';
+            window.consentua.ready();
             document.getElementById('toggle-assent').addEventListener('change', (event) => {
                 var groups = window.consentua.template.PurposeGroups;
                 var groupids = [];
@@ -403,10 +423,6 @@
                 console.log("Toggle consent on purpose groups", groupids, event.target.checked);
                 window.consentua.setPgConsent(groupids, event.target.checked);
             });
-            /* window.consentua.addEventListener('error', (err) => {
-                 console.error(err);
-                 document.getElementById('err').innerHTML=err.msg;         
-            });*/
             document.getElementById('drop-down').addEventListener('click', (event) => {
                 var p = document.getElementById('purposes'),
                     c = document.getElementById('caret');

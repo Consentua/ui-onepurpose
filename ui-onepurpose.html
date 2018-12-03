@@ -410,11 +410,12 @@
                 let p = document.createElement('li');
                 p.innerHTML = purposes + "<br />";
                 document.getElementById('purposes').appendChild(p);
+                document.getElementById('toggle-assent').checked = window.consentua.getConsent()[i].consent || false;
             }
             document.getElementById('loading').style.display = 'none';
             document.getElementById('main').style.display = 'block';
             window.consentua.ready();
-            document.getElementById('toggle-assent').addEventListener('change', (event) => {
+            document.getElementById('toggle-assent').addEventListener('change', function(event){
                 var groups = window.consentua.template.PurposeGroups;
                 var groupids = [];
                 for (var i in groups) {
@@ -423,7 +424,7 @@
                 console.log("Toggle consent on purpose groups", groupids, event.target.checked);
                 window.consentua.setPgConsent(groupids, event.target.checked);
             });
-            document.getElementById('drop-down').addEventListener('click', (event) => {
+            document.getElementById('drop-down').addEventListener('click', function(event){
                 var p = document.getElementById('purposes'),
                     c = document.getElementById('caret');
                 if (p.classList.contains('anim-down')) {
